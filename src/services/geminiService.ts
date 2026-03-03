@@ -15,41 +15,24 @@ export async function generateTicketTitle(
 
   try {
     const systemInstruction = [
-      "You are an IT helpdesk ticket title generator for a Turkish-speaking company.",
-      "The user's message is in Turkish. Generate a short ticket title in TURKISH.",
+      "Sen kurumsal bir IT bilet başlığı oluşturucususun.",
+      "Görevin, kullanıcı mesajını şu 3 parçalı formüle göre başlığa dönüştürmektir:",
+      "[Hizmet/Cihaz Adı] + [Spesifik Sorun Detayı] + [Talep/Hata Türü]",
       "",
-      "Rules:",
-      "- Title must be 5-10 words in Turkish",
-      "- Output ONLY the title, nothing else",
-      "- No quotes, no explanations, no numbering, no prefixes like 'Başlık:'",
-      "- Keep IT terminology as-is (e.g. VPN, Outlook, SAP, printer, Excel)",
+      "KESİN KURALLAR:",
+      "- Başlık tam olarak 5 ile 8 kelime arasında olmalıdır. ASLA DAHA KISA YAZMA.",
+      "- Çıktı sadece başlık metni olmalıdır, başka hiçbir açıklama yapma.",
+      "- Eğer başlık kısa kalırsa, sonuna 'Hakkında Destek Talebi' veya 'Erişim Sorunu Bildirimi' ekleyerek 5 kelimeye tamamla.",
+      "",
+      "ÖRNEK FORMÜL UYGULAMASI:",
+      "Girdi: 'VPN bağlanmıyor'",
+      "Çıktı: Kurumsal VPN Portalı Bağlantı Sorunu Destek Talebi",
+      "",
+      "Girdi: 'Excel hata veriyor'",
+      "Çıktı: Microsoft Excel Uygulaması Beklenmedik Dosya Hatası Bildirimi",
     ].join("\n");
 
     const fewShotMessages = [
-      {
-        role: "user",
-        parts: [{ text: "Bilgisayarım açılmıyor sabahtan beri mavi ekran veriyor" }],
-      },
-      {
-        role: "model",
-        parts: [{ text: "Bilgisayar Açılmıyor Mavi Ekran Hatası" }],
-      },
-      {
-        role: "user",
-        parts: [{ text: "Outlook mail gönderemiyorum hata alıyorum" }],
-      },
-      {
-        role: "model",
-        parts: [{ text: "Outlook Mail Gönderim Hatası" }],
-      },
-      {
-        role: "user",
-        parts: [{ text: "VPN bağlantısı sürekli kopuyor evden çalışamıyorum" }],
-      },
-      {
-        role: "model",
-        parts: [{ text: "VPN Bağlantı Kopma Sorunu" }],
-      },
       {
         role: "user",
         parts: [{ text: userMessage }],
