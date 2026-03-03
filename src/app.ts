@@ -1,7 +1,7 @@
 import { Application, TurnState } from "@microsoft/teams-ai";
 import { TurnContext, MemoryStorage, Attachment } from "botbuilder";
 import { config } from "./config";
-import { generateTicketTitle } from "./services/ollamaService";
+import { generateTicketTitle } from "./services/geminiService";
 import {
   createTicket,
   uploadAttachment,
@@ -101,7 +101,7 @@ export function createApp(): Application<TurnState> {
       await context.sendActivity(MSG.processing);
 
       try {
-        // 1) Generate title via Ollama
+        // 1) Generate title via Gemini
         const userMessage = text || "(Kullanıcı yalnızca dosya gönderdi)";
         const title = await generateTicketTitle(userMessage);
 

@@ -10,9 +10,10 @@ export const config = {
   // Server
   port: parseInt(process.env.PORT || "3978", 10),
 
-  // Ollama
-  ollamaBaseUrl: process.env.OLLAMA_BASE_URL || "http://localhost:11434",
-  ollamaModel: process.env.OLLAMA_MODEL || "llama3.1:8b",
+  // Gemini API
+  geminiApiKey: process.env.GEMINI_API_KEY || "",
+  geminiBaseUrl: process.env.GEMINI_BASE_URL || "https://generativelanguage.googleapis.com",
+  geminiModel: process.env.GEMINI_MODEL || "gemini-2.0-flash",
 
   // ManageEngine ServiceDesk Plus
   manageEngineEndpoint:
@@ -23,6 +24,6 @@ export const config = {
   // Limits
   maxMessageLength: 1000,
   rateLimitSeconds: 60,
-  ollamaTimeoutMs: 30_000,
+  geminiTimeoutMs: 15_000,
   gracefulShutdownMs: 10_000,
 };
