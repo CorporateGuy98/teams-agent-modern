@@ -13,6 +13,12 @@ export function validateEnv(): void {
     errors.push("MANAGE_ENGINE_ENDPOINT is required but not set.");
   }
 
+  if (!config.geminiApiKey) {
+    errors.push(
+      "GEMINI_API_KEY is required but not set. Application cannot start."
+    );
+  }
+
   // Azure credentials are optional (empty = Emulator mode)
   if (!config.microsoftAppId) {
     console.warn(
